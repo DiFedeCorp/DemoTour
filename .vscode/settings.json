@@ -1,0 +1,6 @@
+{
+    "sonarlint.connectedMode.project": {
+        "connectionId": "https-sonar-difede-org",
+        "projectKey": "DiFedeCorp_DemoTour_c29067b8-9a95-4cd8-b99f-aa3dff077929"
+    }
+}
