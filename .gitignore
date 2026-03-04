@@ -1,1 +1,15 @@
+# Build
+target/
 build/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+*.class
+*.jar
+!**/src/main/**/package-info.java
+
+# OS
+.DS_Store
+Thumbs.db
