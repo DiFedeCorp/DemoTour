@@ -3,12 +3,8 @@ package com.demotour;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-/**
- * Pseudo couche d'accès aux données, volontairement naïve.
- */
 public class Database {
 
-    // Store en mémoire pour la démo.
     private static final Map<String, Double> store = new ConcurrentHashMap<>();
 
     static {
@@ -18,7 +14,6 @@ public class Database {
     }
 
     public DbConnection openConnection(String dbName) {
-        // Simule un handle : limite volontairement fragile (risque si dbName trop long).
         DbConnection conn = new DbConnection();
         conn.rawHandle = dbName.length() > 32 ? dbName.substring(0, 32) : dbName;
         return conn;
@@ -43,7 +38,6 @@ public class Database {
             System.err.println("Invalid connection");
             return;
         }
-        // Affiche la requête : dans un vrai système ceci serait un risque de log sensible.
         System.out.println("[DB] Executing: " + rawQuery);
     }
 
@@ -52,7 +46,6 @@ public class Database {
     }
 
     private void writeToInMemoryStore(String accountId, double value) {
-        // Gère aussi la création de compte à la volée, sans validation.
         store.put(accountId, value);
     }
 }

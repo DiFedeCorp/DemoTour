@@ -7,8 +7,6 @@ Le code contient **volontairement** plusieurs:
 - **code smells** (complexité inutile, duplication, magic numbers, API douteuses…)
 - **failles potentielles** (concaténation de chaînes pour les pseudo-requêtes, logique inversée dans certains cas, heuristiques de sécurité faibles, etc.)
 
-Ces problèmes sont conçus pour être **discrets et difficiles à voir à l'œil nu**, afin d'illustrer la valeur d'une analyse automatisée avec SonarQube.
-
 ### Structure du projet
 
 - `pom.xml` : configuration Maven pour construire le JAR
@@ -50,5 +48,3 @@ Vous pouvez essayer différents identifiants de compte (`ACC-001`, `ACC-002`, `D
 1. Configurez un projet Java dans SonarQube.
 2. Lancez l'analyse SonarQube sur ce répertoire (Maven est détecté automatiquement).
 3. Explorez les alertes (bugs, vulnérabilités, code smells) détectées dans les fichiers `src/main/java/com/demotour/*.java`.
-
-De nombreuses anomalies sont **subtiles** (heuristiques bancales, branches logiques rarement atteintes, cache incohérent, etc.), ce qui rend la démonstration particulièrement pertinente pour montrer la puissance de SonarQube.

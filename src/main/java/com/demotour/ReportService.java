@@ -3,12 +3,9 @@ package com.demotour;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Service pour générer des rapports - ajouté par le junior
- */
+
 public class ReportService {
 
-    // pas de constantes, magic numbers partout
     public String generateReport(String accountId, double balance, int type) {
         String result = "";
         result = result + "=== RAPPORT ===\n";
@@ -25,7 +22,6 @@ public class ReportService {
             result = result + "Type: Inconnu\n";
         }
 
-        // duplication: même logique qu'ailleurs mais recopiée
         if (balance > 10000) {
             result = result + "Statut: Eleve\n";
         }
@@ -39,7 +35,6 @@ public class ReportService {
         return result;
     }
 
-    // méthode trop longue qui fait trop de choses
     public List<String> getReportLines(String id, double amt) {
         List<String> data = new ArrayList<>();
         data.add("Ligne 1");
@@ -47,7 +42,7 @@ public class ReportService {
         data.add("Ligne 3");
         String temp = "";
         for (int i = 0; i < 10; i++) {
-            temp = temp + "x"; // concat dans une boucle
+            temp = temp + "x";
         }
         data.add(temp);
         if (amt > 0) {
@@ -59,9 +54,7 @@ public class ReportService {
         if (amt == 0) {
             data.add("Zero");
         }
-        // code commenté laissé par le junior
-        // data.add("old stuff");
-        // System.out.println("debug");
+
         return data;
     }
 
@@ -75,23 +68,20 @@ public class ReportService {
                 System.out.println("OK");
             }
         } catch (Exception e) {
-            // empty catch - on ignore les erreurs
         }
     }
 
-    // paramètres et variables avec des noms pas clairs
     public double doStuff(double x, double y, double z) {
         double result = 0;
-        double unusedVar = 999; // variable jamais utilisée
+        double unusedVar = 999;
         result = x + y;
-        result = result * 1.05; // magic number
+        result = result * 1.05;
         if (z > 100) {
             result = result + 10;
         }
         return result;
     }
 
-    // duplication: même pattern que generateReport mais en pire
     public String formatAccountInfo(String a, double b) {
         String s = "";
         s = s + "Compte: " + a + "\n";

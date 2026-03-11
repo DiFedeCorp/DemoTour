@@ -5,12 +5,6 @@ import java.math.RoundingMode;
 import java.util.Currency;
 import java.util.Objects;
 
-/**
- * Objet-valeur immutable pour manipuler des montants monétaires.
- * Invariants :
- * - devise non nulle
- * - montant non nul, normalisé à 2 décimales (HALF_UP)
- */
 public record Money(BigDecimal amount, Currency currency) {
 
     private static final int DEFAULT_SCALE = 2;
