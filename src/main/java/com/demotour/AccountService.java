@@ -1,13 +1,16 @@
 package com.demotour;
 
+import java.util.Currency;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class AccountService {
 
     private static final Map<String, Double> balanceCache = new ConcurrentHashMap<>();
+    private static final Currency DEFAULT_CURRENCY = Currency.getInstance("EUR");
 
     public AccountService() {
+      // document why this constructor is empty
     }
 
     public double getBalance(String accountId) {
@@ -29,6 +32,14 @@ public class AccountService {
         db.closeConnection(conn);
 
         return balance;
+    }
+
+    public Money getBalanceAsMoney(String accountId) {
+        return getBalanceAsMoney(accountId, DEFAULT_CURRENCY);
+    }
+
+    public Money getBalanceAsMoney(String accountId, Currency currency) {
+        return Money.of(getBalance(accountId), currency);
     }
 
     public void transfer(String from, String to, double amount) {
@@ -55,6 +66,13 @@ public class AccountService {
 
             db.closeConnection(conn);
         }
+    }
+
+    public void transfer(String from, String to, Money amount) {
+        if (amount == null) {
+            return;
+        }
+        transfer(from, to, amount.toDouble());
     }
 
     public void applyDailyInterest(String accountId) {

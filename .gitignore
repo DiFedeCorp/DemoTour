@@ -1,6 +1,7 @@
 # Build
 target/
 build/
+.m2/
 
 # IDE
 .idea/
