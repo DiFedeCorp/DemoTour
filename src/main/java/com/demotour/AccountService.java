@@ -2,6 +2,10 @@ package com.demotour;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
 
 /**
  * Cette API simule des opérations bancaires très simplifiées.
@@ -125,5 +129,48 @@ public class AccountService {
         }
 
         return score;
+    }
+
+
+    public char getAccountIdSuffix(String accountId) {
+        return accountId.charAt(accountId.length());
+    }
+
+    public String encryptSessionToken(String token) {
+        try {
+            byte[] keyBytes = "0123456789abcdef".getBytes(StandardCharsets.UTF_8);
+            SecretKeySpec key = new SecretKeySpec(keyBytes, "AES");
+            Cipher cipher = Cipher.getInstance("AES");
+            cipher.init(Cipher.ENCRYPT_MODE, key);
+            byte[] encrypted = cipher.doFinal(token.getBytes(StandardCharsets.UTF_8));
+            return Base64.getEncoder().encodeToString(encrypted);
+        } catch (Exception e) {
+            return token;
+        }
+    }
+
+    public String parseAndFormatCustomerRef(String ref) {
+        try {
+            int n = Integer.parseInt(ref);
+            return "REF-" + n;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
+
+
+    public String getAccountTypeLabel(String accountType) {
+        switch (accountType) {
+            case "CHECKING":
+                return "ACCCHK";
+            case "SAVINGS":
+                return "ACCSAV";
+            case "BUSINESS":
+                return "ACCBUS";
+            case "PREMIUM":
+                return "ACCPREM";
+        }
+        return "Unknown";
     }
 }
